@@ -34,11 +34,11 @@ services:
     ports:
       - "127.0.0.1:5432:5432"
     environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_ADMIN_USER
-      - POSTGRES_ADMIN_PASSWORD
-      - POSTGRES_DB
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_ADMIN_USER=${POSTGRES_ADMIN_USER}
+      - POSTGRES_ADMIN_PASSWORD=${POSTGRES_ADMIN_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
     networks:
       - iris_backend
     volumes:
@@ -66,18 +66,17 @@ services:
     # Used for debugging purposes, should be deleted for production
     ports:
       - "127.0.0.1:8000:8000"
-    env_file:
-      - .env
     environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_ADMIN_USER
-      - POSTGRES_ADMIN_PASSWORD
-      - POSTGRES_SERVER
-      - POSTGRES_PORT
-      - DOCKERIZED
-      - IRIS_SECRET_KEY
-      - IRIS_SECURITY_PASSWORD_SALT
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_ADMIN_USER=${POSTGRES_ADMIN_USER}
+      - POSTGRES_ADMIN_PASSWORD=${POSTGRES_ADMIN_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_SERVER=${POSTGRES_SERVER}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - DOCKERIZED=${DOCKERIZED}
+      - IRIS_SECRET_KEY=${IRIS_SECRET_KEY}
+      - IRIS_SECURITY_PASSWORD_SALT=${IRIS_SECURITY_PASSWORD_SALT}
     networks:
       - iris_backend
       - iris_frontend
@@ -100,19 +99,18 @@ services:
       - "rabbitmq"
       - "db"
       - "app"
-    env_file:
-      - .env
     environment:
-      - POSTGRES_USER
-      - POSTGRES_PASSWORD
-      - POSTGRES_ADMIN_USER
-      - POSTGRES_ADMIN_PASSWORD
-      - POSTGRES_SERVER
-      - POSTGRES_PORT
-      - DOCKERIZED
-      - IRIS_SECRET_KEY
-      - IRIS_SECURITY_PASSWORD_SALT
-      - IRIS_WORKER
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_ADMIN_USER=${POSTGRES_ADMIN_USER}
+      - POSTGRES_ADMIN_PASSWORD=${POSTGRES_ADMIN_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_SERVER=${POSTGRES_SERVER}
+      - POSTGRES_PORT=${POSTGRES_PORT}
+      - DOCKERIZED=${DOCKERIZED}
+      - IRIS_SECRET_KEY=${IRIS_SECRET_KEY}
+      - IRIS_SECURITY_PASSWORD_SALT=${IRIS_SECURITY_PASSWORD_SALT}
+      - IRIS_WORKER=${IRIS_WORKER}
     networks:
       - iris_backend
 
@@ -125,13 +123,13 @@ services:
     image: iriswebapp_nginx:v2.2.3
     container_name: iriswebapp_nginx
     environment:
-      - IRIS_UPSTREAM_SERVER
-      - IRIS_UPSTREAM_PORT
-      - INTERFACE_HTTPS_PORT
-      - SERVER_NAME
-      - CERT_FILENAME
-      - KEY_FILENAME
-      - IRIS_AUTHENTICATION_TYPE
+      - IRIS_UPSTREAM_SERVER=${IRIS_UPSTREAM_SERVER}
+      - IRIS_UPSTREAM_PORT=${IRIS_UPSTREAM_PORT}
+      - INTERFACE_HTTPS_PORT=${INTERFACE_HTTPS_PORT}
+      - SERVER_NAME=${SERVER_NAME}
+      - CERT_FILENAME=${CERT_FILENAME}
+      - KEY_FILENAME=${KEY_FILENAME}
+      - IRIS_AUTHENTICATION_TYPE=${IRIS_AUTHENTICATION_TYPE}
     networks:
       - iris_frontend
     ports:
