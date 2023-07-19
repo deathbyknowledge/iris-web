@@ -26,7 +26,7 @@ services:
 
   db:
     build:
-      context: docker/db
+      context: ./docker/db
     container_name: iriswebapp_db
     image: iriswebapp_db:v2.2.3
     restart: always
@@ -47,7 +47,7 @@ services:
   app:
     build:
       context: .
-      dockerfile: docker/webApp/Dockerfile
+      dockerfile: ./docker/webApp/Dockerfile
     image: iriswebapp_app:v2.2.3
     container_name: iriswebapp_app
     command: ['nohup', './iris-entrypoint.sh', 'iriswebapp']
@@ -84,7 +84,7 @@ services:
   worker:
     build:
       context: .
-      dockerfile: docker/webApp/Dockerfile
+      dockerfile: ./docker/webApp/Dockerfile
     image: iriswebapp_app:v2.2.3
     container_name: iriswebapp_worker
     command: ['./wait-for-iriswebapp.sh', 'app:8000', './iris-entrypoint.sh', 'iris-worker']
